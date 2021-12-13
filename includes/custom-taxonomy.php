@@ -37,11 +37,12 @@ function year_taxonomy() {
 		'show_in_nav_menus'          => true,
 		'show_in_rest'				 => true,
 		'show_tagcloud'              => true,
-		'rewrite'                    => array(
-			'slug'         => $slug,
-			'hierarchical' => true,
-			'ep_mask'      => EP_PERMALINK | EP_PAGES
-		)
+		'rewrite'                    => false
+		// array(
+		// 	'slug'         => $slug,
+		// 	'hierarchical' => true,
+		// 	'ep_mask'      => EP_PERMALINK | EP_PAGES
+		// )
 	);
 
 	register_taxonomy( 'year', array( 'presenter', 'presentation_archive', 'person' ), $args );
