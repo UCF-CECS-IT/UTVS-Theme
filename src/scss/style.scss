@@ -20,5 +20,18 @@
 // Project-specific styles and overrides
 //
 
+.role-text {
+  @include media-breakpoint-up(md) {
+    font-size: .75rem;
+  }
+}
+
+.font-size-pantheon {
+  @include media-breakpoint-up(md) {
+    font-size: .85rem!important;
+  }
+}
+
+
 // Add/import your theme's custom styles here
 // ...
