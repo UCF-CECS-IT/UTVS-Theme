@@ -9,6 +9,8 @@ $role = get_field( 'presenter_role', $post->ID );
 $bio = get_field( 'presenter_bio', $post->ID ) ?: 'TBD';
 $title = get_field( 'presenter_presentation_title', $post->ID) ?: 'TBD';
 $abstract = get_field( 'presenter_presentation_abstract', $post->ID ) ?: 'TBD';
+$email = get_field( 'presenter_email', $post->ID );
+$site = get_field( 'presenter_website', $post->ID );
 
 ?>
 
@@ -22,6 +24,17 @@ $abstract = get_field( 'presenter_presentation_abstract', $post->ID ) ?: 'TBD';
 				<?php echo $organization; ?> <br>
 				<small class="font-slab-serif"><?php echo $role; ?></small><br>
 			</h2>
+			<?php if( $email ): ?>
+				<div class="mb-1">
+					<b>Contact:</b> <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a>
+				</div>
+			<?php endif; ?>
+			<?php if( $site ): ?>
+				<div class="mb-1">
+					<b>Website:</b> <a href="<?php echo $site; ?>" target="_blank"><?php echo $site; ?></a>
+				</div>
+			<?php endif; ?>
+
 			<div>
 				<?php echo $bio; ?>
 			</div>

@@ -68,18 +68,24 @@ if ( ! function_exists( 'ucfwp_post_list_display_utvs' ) ) {
 						if ($suffix) {
 							$name .= ", {$suffix}";
 						}
+						$email = get_field( 'presenter_email', $item->ID );
 						?>
 						<div class="col-xl-3 col-lg-4 col-md-6 mb-3 utvs-post-list-item">
 							<div class="card h-100 box-shadow-soft">
 								<a class="person-link" href="<?php echo get_permalink( $item->ID ); ?>">
 									<img class="card-img-top" src="<?php echo $headshot; ?>">
 								</a>
-								<div class="p-3 font-size-sm d-flex flex-column">
+								<div class="h-100 p-3 font-size-sm d-flex flex-column justify-content-start">
 									<h5 class="heading-underline text-transform-none mb-2"><span class="font-serif"><?php echo $name; ?></span></h5>
 									<div class="role-text mb-1 font-italic"><?php echo $role; ?>, <b><?php echo $org; ?></b></div>
 									<hr class="w-100 my-1">
 									<p class="card-text mb-1"><b>Topic:</b> <?php echo $topic; ?></p>
-									<p class="card-text"><b>Time:</b> <?php echo $time; ?></p>
+									<p class="card-text <?php if ( $email) echo 'mb-1'; ?>"><b>Time:</b> <?php echo $time; ?></p>
+									<?php if ( $email ): ?>
+										<p class="card-text">
+											<b>Contact:</b> <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a>
+										</p>
+									<?php endif; ?>
 									<div class="text-center mt-auto mb-0"><a class="btn btn-primary btn-sm" href="<?php echo get_permalink( $item->ID ); ?>">More Info</a></div>
 								</div>
 							</div>
