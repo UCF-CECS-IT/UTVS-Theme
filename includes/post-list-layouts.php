@@ -126,14 +126,26 @@ function group_by_presentation( $items ) {
 
 	$grouped = array();
 
+	// must be lowercase to account for edge cases like names with captialization within the name
 	usort($items, function ($a, $b) {
-		return ( get_field( 'presenter_last_name', $a->ID ) <=> get_field( 'presenter_last_name', $b->ID ) );
+		$lastNameA = strtolower( get_field( 'presenter_last_name', $a->ID ) );
+		$lastNameB = strtolower( get_field( 'presenter_last_name', $b->ID ) );
+
+		return ( $lastNameA <=> $lastNameB );
 	});
 
 	foreach( $items as $item ) {
 		$topic = get_field( 'presenter_topic', $item->ID );
 		$grouped[$topic][] = $item;
 	}
+
+	// sort the groups by the last name of the first presenter by alphabetical order
+	// usort($grouped, function ($a, $b) {
+	// 	$firstPresenterA = $a[0];
+	// 	$firstPresenterB = $b[0];
+
+	// 	return ( get_field( 'presenter_last_name', $firstPresenterA->ID ) <=> get_field( 'presenter_last_name', $firstPresenterB->ID ) );
+	// });
 
 	return $grouped;
 }
