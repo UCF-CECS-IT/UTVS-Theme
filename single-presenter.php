@@ -7,8 +7,8 @@ $headshot = get_field( 'presenter_headshot', $post->ID );
 $organization = get_field( 'presenter_organization', $post->ID );
 $role = get_field( 'presenter_role', $post->ID );
 $bio = get_field( 'presenter_bio', $post->ID ) ?: 'TBD';
-$title = get_field( 'presenter_presentation_title', $post->ID) ?: 'TBD';
-$abstract = get_field( 'presenter_presentation_abstract', $post->ID ) ?: 'TBD';
+$title = get_field( 'presenter_presentation_title', $post->ID);
+$abstract = get_field( 'presenter_presentation_abstract', $post->ID );
 $email = get_field( 'presenter_email', $post->ID );
 $site = get_field( 'presenter_website', $post->ID );
 
@@ -39,11 +39,15 @@ $site = get_field( 'presenter_website', $post->ID );
 				<?php echo $bio; ?>
 			</div>
 			<hr class="bg-primary my-4">
-			<h5>Talk:</h5>
-			<p><?php echo $title; ?>
+			<?php if ( $title ): ?>
+				<h5>Talk:</h5>
+				<p><?php echo $title; ?>
+			<?php endif; ?>
 
-			<h5>Abstract:</h5>
-			<p><?php echo $abstract; ?>
+			<?php if ( $abstract ): ?>
+				<h5>Abstract:</h5>
+				<p><?php echo $abstract; ?>
+			<?php endif ;?>
 		</div>
 	</div>
 </div>
